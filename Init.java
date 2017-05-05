@@ -12,35 +12,55 @@ public class Init {
         sc = new Scanner(System.in);
     }
 
-    public void userCreate() {
-        System.out.print("Type add to add new Telephone: ");
-        String typed = sc.nextLine();
+    public void inputConstr() {
 
-        while (typed.equals("add")) {
-            if (typed.equals("add")) {
-                System.out.print("Type brand: ");
-                String brand = sc.nextLine();
-                System.out.print("Type model: ");
-                String model = sc.nextLine();
-                System.out.print("Type color: ");
-                String c = sc.nextLine();
-                Color color = Color.getColor(c);
-                System.out.print("Type price: ");
-                double price = sc.nextDouble();
-                System.out.print("Type ram size: ");
-                int ram = sc.nextInt();
-                System.out.print("Type memory size: ");
-                int memory = sc.nextInt();
-                this.telList.add(new Telephone(brand, model, color, price, ram, memory));
-                System.out.print("\nCongratulation! You have added new Telephone; ID: " + Telephone.getCount());
-                System.out.println("\nWhat would you like to do? Type add to add next; Type close to end edit");
-                typed = sc.nextLine();
-                typed = sc.nextLine();
-                
+        System.out.print("Type brand: ");
+        String brand = sc.nextLine();
+        System.out.print("Type model: ");
+        String model = sc.nextLine();
+        System.out.print("Type color: ");
+        String c = sc.nextLine();
+        Color color = Color.getColor(c);
+        System.out.print("Type price: ");
+        double price = sc.nextDouble();
+        System.out.print("Type ram size: ");
+        int ram = sc.nextInt();
+        System.out.print("Type memory size: ");
+        int memory = sc.nextInt();
+        String eatLine = sc.nextLine();
+        this.telList.add(new Telephone(brand, model, color, price, ram, memory));
+        System.out.println("\nSuccessful! You have added new Telephone; ID: " + Telephone.getCount());
+        System.out.println();
+
+    }
+
+    public void closeInputConstr() {
+        System.out.println("See you next time (:");
+        System.exit(0);
+    }
+
+    public void showMenu() {
+        System.out.print("Type: \t\"add\" to add new Telephone;" + "\n\t\"close\" to end edition: ");
+    }
+
+    public void showInputErr() {
+        System.out.println("Unknown Command!");
+    }
+
+    public void whatToDo() {
+        String typedMsg;
+
+        do {
+            showMenu();
+            typedMsg = sc.nextLine();
+            if (typedMsg.equals("add")) {
+                inputConstr();
+            } else if (typedMsg.equals("close")) {
+                closeInputConstr();
+            } else {
+                showInputErr();
             }
-
-        }
-
+        } while (!(typedMsg.equals("close")));
     }
 
     public ArrayList<Telephone> getTelList() {
@@ -50,8 +70,7 @@ public class Init {
     public static void main(String[] args) {
 
         Init in = new Init();
-        in.userCreate();
-        
+        in.whatToDo();
 
         for (Telephone t : in.getTelList()) {
             t.getInfo();
