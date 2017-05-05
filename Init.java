@@ -36,7 +36,6 @@ public class Init {
 
     public void closeInputConstr() {
         System.out.println("See you next time (:");
-        System.exit(0);
     }
 
     public void showMenu() {
